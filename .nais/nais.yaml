@@ -2,9 +2,9 @@ apiVersion: nais.io/v1
 kind: Naisjob
 metadata:
   labels:
-    team: nais
+    team: dapla-platform
   name:  github-backup
-  namespace: nais
+  namespace: dapla-platform
 spec:
   image: {{ image }}
   schedule: {{ schedule }}
@@ -16,12 +16,5 @@ spec:
       cpu: "5"
     requests:
       cpu: "500m"
-  env:
-    - name: BUCKET_NAME
-      value: {{ bucket_name }}
   envFrom:
     - secret: github-backup-config
-  gcp:
-    buckets:
-      - name: {{ bucket_name }}
-        publicAccessPrevention: true

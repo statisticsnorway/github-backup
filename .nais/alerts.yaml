@@ -2,15 +2,15 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: github-backup
-  namespace: nais
+  namespace: dapla-platform
   labels:
-    team: nais
+    team: dapla-platform
 spec:
   groups:
     - name: github-backup
       rules:
       - alert: GitHub backup failed
-        expr: kube_job_failed{job_name=~"^github-backup.*", namespace="nais"} > 0
+        expr: kube_job_failed{job_name=~"^github-backup.*", namespace="dapla-platform"} > 0
         for: 1m
         annotations:
           consequence: GitHub repos were not backed up
@@ -18,5 +18,5 @@ spec:
           summary: |-
             "The `github-backup` job did not run to completion"
         labels:
-          namespace: nais
+          namespace: dapla-platform
           severity: warning

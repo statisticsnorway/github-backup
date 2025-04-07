@@ -34,9 +34,8 @@ jobs:
       - uses: nais/docker-build-push@v0
         id: docker-push
         with:
-          team: nais
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          team: dapla-platform
+
   deploy:
     permissions:
       contents: read
@@ -48,7 +47,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: nais/deploy/actions/deploy@v2
         env:
-          CLUSTER: prod-gcp
+          CLUSTER: prod
           RESOURCE: .nais/nais.yaml,.nais/alerts.yaml
           VARS: .nais/prod.yaml
           VAR: image=${{ needs.build.outputs.img }}
+          DEPLOY_SERVER: deploy.ssb.cloud.nais.io:443

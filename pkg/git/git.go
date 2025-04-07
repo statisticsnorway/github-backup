@@ -2,11 +2,12 @@ package git
 
 import (
 	"fmt"
-	"github.com/go-git/go-git/v5"
-	"github.com/go-git/go-git/v5/plumbing/transport/http"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/go-git/go-git/v5"
+	"github.com/go-git/go-git/v5/plumbing/transport/http"
 )
 
 func CloneRepo(basedir, repo, username, password string) error {
@@ -21,7 +22,6 @@ func CloneRepo(basedir, repo, username, password string) error {
 			Username: username,
 			Password: password,
 		},
-		Depth: 1,
 	})
 	return err
 }
