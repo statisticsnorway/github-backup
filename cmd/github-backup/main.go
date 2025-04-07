@@ -15,7 +15,7 @@ import (
 )
 
 var basedir = filepath.Join(os.TempDir(), "ghbackup")
-var orgs = []string{"navikt", "nais"}
+var orgs = []string{"statisticsnorway"}
 
 const MaxConcurrent = 3
 
